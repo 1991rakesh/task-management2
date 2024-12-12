@@ -40,7 +40,7 @@ class TaskController extends Controller
             'due_date'=>$request->due_date,
             'user_id'=>Auth::user()->id,
         ]);
-        return redirect()->back()->with('success', "Product has been created!");
+        return redirect()->back()->with('success', "Task has been created!");
     }
 
     /**
@@ -65,9 +65,15 @@ class TaskController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Task $task)
+    public function update(Request $request, $id)
     {
-        //
+        $task = Task::find($id);
+        $task->title = $request->input('title');
+        $task->description = $request->input('description');
+        $task->status = $request->input('status');
+        $task->due_date = $request->input('due_date');
+        $task->save();
+        return redirect()->back()->route('task-edit')->with('success', "Task has been Updated!");
     }
 
     /**

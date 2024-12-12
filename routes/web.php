@@ -9,11 +9,11 @@ use App\Models\Task;
 // Route::get('/', function () {return view('welcome');});
 Route::get('/', [TaskController::class, 'show'])->name('welcome');
 
-// Route::get('/addtask', function () {return view('addtask');})->name('addtask');
+Route::get('/addtask', function () {return view('addtask');})->name('addtask');
 Route::post('/addtask', [TaskController::class, 'store'])->name('addtask');
 
 Route::get('/tasks/edit/{id}', [TaskController::class, 'edit'])->name('task-edit');
-Route::get('/tasks/{id}', [TaskController::class, 'update'])->name('task-updade');
+Route::patch('/tasks/{id}', [TaskController::class, 'update'])->name('task-update');
 
 
 

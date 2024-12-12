@@ -21,37 +21,50 @@
 </head>
 
 <body class="font-sans antialiased">
-    <ul class="nav justify-content-end">
-        <a href="{{ route('welcome') }}"> Home</a>
-        @if (Auth::check())
-            <!-- Authenticated User Dropdown -->
-            <div class="btn-group">
-                <button type="button" class="btn btn-success dropdown-toggle" data-bs-toggle="dropdown"
-                    aria-expanded="false">
-                    <i class="fas fa-user"></i> &nbsp; {{ Auth::user()->name }}
+    <nav class="navbar bg-body-tertiary">
+        <div class="container-fluid">
+            <a class="navbar-brand">Task Management</a>
+            <ul class="nav justify-content-end">
+                <button type="button" class="btn btn-outline-success mr-3">
+                    <a href="{{ route('welcome') }}"> Home</a>
                 </button>
-                <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" href="{{ route('addtask') }}">{{ __('Add Task') }}</a></li>
-                    <li><a class="dropdown-item" href="{{ route('profile.edit') }}">{{ __('Profile') }}</a></li>
-                    <form method="POST" action="{{ route('logout') }}">
-                        @csrf
-                        <a class="dropdown-item" href="#"
-                            onclick="event.preventDefault(); this.closest('form').submit();">
-                            {{ __('Log Out') }}
-                        </a>
-                    </form>
-                    </li>
-                </ul>
-            </div>
-        @else
-            <!-- Guest User Sign In Button -->
-            <a href="{{ route('login') }}">
-                <button type="button" class="btn btn-success">
-                    Sign In
-                </button>
-            </a>
-        @endif
-    </ul>
+                &nbsp;
+                &nbsp;
+                &nbsp;
+                @if (Auth::check())
+                    <!-- Authenticated User Dropdown -->
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-success dropdown-toggle" data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                            <i class="fas fa-user"></i> &nbsp; {{ Auth::user()->name }}
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="{{ route('addtask') }}">{{ __('Add Task') }}</a></li>
+                            <li><a class="dropdown-item" href="{{ route('profile.edit') }}">{{ __('Profile') }}</a></li>
+                            <form method="POST" action="{{ route('logout') }}">
+                                @csrf
+                                <a class="dropdown-item" href="#"
+                                    onclick="event.preventDefault(); this.closest('form').submit();">
+                                    {{ __('Log Out') }}
+                                </a>
+                            </form>
+                            </li>
+                        </ul>
+                    </div>
+                @else
+                    <!-- Guest User Sign In Button -->
+                    <a href="{{ route('login') }}">
+                        <button type="button" class="btn btn-outline-success">
+                            Sign In
+                        </button>
+                    </a>
+                @endif
+            </ul>
+        </div>
+    </nav>
+<br>
+<br>
+
 
 
     <!-- Page Content -->
